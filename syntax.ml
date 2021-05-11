@@ -1,21 +1,22 @@
-type op = PLUS | MULT | DIV | EQUAL
+type op = PLUS | MOINS | MULT | DIV 
 
 type expression =
   | Const of int
   | Ident of string
-
+  | App of expression * op * expression
 
 type instruction =
-  | Avance of expression
-  | Tourne of expression
   | BasPinceau
   | HautPinceau
-  | BlockInstru of blocInstruction
+  | Avance      of expression
+  | Tourne      of expression
+  | BlocInstru  of blocInstruction
+  | Equal       of string * epxression
 
-type blocInstruction = instruction
+type blocInstruction = 
+  | Instru of instruction 
+  | BlocInstru of blocInstruction
 
-type typ = Int
-
-type declaration = string * typ
+type declaration = string * int
 
 type program = declaration list * instruction list
