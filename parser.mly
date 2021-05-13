@@ -1,7 +1,7 @@
 %token <int> INTCONST
 %token <string> IDENT
 %token PLUS MOINS MULT DIV 
-%token SEMICOLON EQUAL
+%token SEMICOLON EQUAL VAR
 %token AVANCE TOURNE BASPINCEAU HAUTPINCEAU 
 %token DEBUT FIN EOF
 %start <Syntax.program> s
@@ -11,19 +11,21 @@
 %{ open Syntax %}
 %%
 
-s: p = program EOF {p}
+s: p = program EOF { p }
 
-program: ds = declaration* DEBUT is = instruction* FIN {(ds, is)}
+// ast
+program: ds = declaration* is = instruction { (ds, is) }
 
-declaration: i = IDENT EQUAL t = INTCONST {(i, t)}
+declaration: VAR i = IDENT SEMICOLON { Var i }
 
 instruction:
     | BASPINCEAU                       { BasPinceau }
     | HAUTPINCEAU                      { HautPinceau }
-    | AVANCE            e = expression { Avance of e }
-    | TOURNE            e = expression { Tourne of e }
+    | AVANCE            e = expression { Avance e }
+    | TOURNE            e = expression { Tourne e }
     | i = IDENT EQUAL   e = expression { Equal (i, e) }
-    | DEBUT block =  blockInstruction END { BlockInstru block }
+    | DEBUT bloc =  blocInstru* FIN { BlocInstru bloc }
+    
 
 expression:
     | s = IDENT     {Ident s}
@@ -32,3 +34,5 @@ expression:
     | e1 = expression MOINS e2 = expression { App(e1, Moins, e2) }
     | e1 = expression MULT  e2 = expression { App(e1, Mult, e2) }
     | e1 = expression DIV   e2 = expression { App(e1, Div, e2) }
+
+blocInstru: i = instruction SEMICOLON { i }

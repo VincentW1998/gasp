@@ -1,4 +1,4 @@
-type op = PLUS | MOINS | MULT | DIV 
+type op = Plus | Moins| Mult| Div
 
 type expression =
   | Const of int
@@ -10,13 +10,9 @@ type instruction =
   | HautPinceau
   | Avance      of expression
   | Tourne      of expression
-  | BlocInstru  of blocInstruction
-  | Equal       of string * epxression
+  | BlocInstru  of instruction list
+  | Equal       of string * expression
 
-type blocInstruction = 
-  | Instru of instruction 
-  | BlocInstru of blocInstruction
+type declaration = Var of string
 
-type declaration = string * int
-
-type program = declaration list * instruction list
+type program = (declaration list) * instruction 

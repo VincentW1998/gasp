@@ -1,5 +1,5 @@
-EXE=turtle.exe
-BUILD=_build/defualt/$(EXE)
+EXE=run.exe
+BUILD=_build/default/$(EXE)
 
 build:
 	rm -f $(EXE)
