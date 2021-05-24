@@ -12,7 +12,8 @@ let _ =
   try
   let ast = Parser.s Lexer.token lb in 
   
-  Interpretation.print ast
+  (* Interpretation.print ast *)
+  Interpretation.program ast
   
   with
   | Lexer.Error msg ->

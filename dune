@@ -1,3 +1,5 @@
 (ocamllex (modules lexer))
-(menhir (modules parser))
-(executable (name run))
+(menhir (modules parser)
+        (flags --explain --dump))
+(executable (name run)
+            (libraries graphics))

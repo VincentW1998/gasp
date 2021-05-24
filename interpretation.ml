@@ -29,4 +29,7 @@ and printBloc bIs = match bIs with
   | [] -> ()
   | h :: t -> printIs h; printBloc t
 
+(* print instruction *)
 let print (ds, is) = printDs ds; printIs is
+
+let program (ds, is) = print (ds, is)
