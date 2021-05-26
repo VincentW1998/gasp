@@ -35,7 +35,7 @@ let isUp () = pen_position := false
 
 let isDown () = pen_position := true
 
-let avancer a = 
+let  draw a = 
   x := !x +. cordinateX a;
   y := !x +. cordinateY a;
   if !pen_position then lineto (roundFloat !x) (roundFloat !y)

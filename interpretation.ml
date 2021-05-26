@@ -48,10 +48,12 @@ let rec interpDs ds = match ds with
 let rec interpIs is = match is with
   | BasPinceau -> Turtle.isDown ()
   | HautPinceau -> Turtle.isUp ()
-  | Avance e -> Turtle.avancer (evaluate e)
+  | Avance e -> Turtle.draw (evaluate e)
   | Tourne e -> Turtle.tourne (evaluate e)
   | BlocInstru bIs -> List.iter interpIs bIs 
   | Equal (s, e) -> modifyVar s e
+  | IfAlorsSinon (e, i1, i2) -> interpIs (if e <> 0 then i1 else i2)
+  | TantFaire (e, i1) -> while e <> 0 do i1 done
 
 
 let program (ds, is) = 
