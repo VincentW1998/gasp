@@ -1,3 +1,5 @@
+val pen_position : bool ref
+
 (** get the sign of x and add this sign to 0.5**)
 val getSign : float -> float
 
@@ -5,7 +7,8 @@ val getSign : float -> float
 val degreeToRad : float -> float
 
 (** round the float **)
-val roundFloat : float -> int
+val roundFloat : float -> float
+(* val roundFloat : float -> int *)
 
 (* Polar cordinate to cartesian for axe X *)
 val cordinateX : int -> float 
@@ -20,6 +23,8 @@ val isDown : unit -> unit
 val tourne : int -> unit 
 
 val draw : int -> unit
+
+val isOutOfBounds : unit -> unit
 
 val start : unit -> unit
 
