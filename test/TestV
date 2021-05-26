@@ -1,4 +1,8 @@
 Debut
+HautPinceau;
+Avance 100;
+Tourne 270;
 BasPinceau;
 Avance 100;
+
 Fin
