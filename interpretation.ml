@@ -53,8 +53,6 @@ let rec interpIs is = match is with
   | BlocInstru bIs -> List.iter interpIs bIs 
   | Equal (s, e) -> modifyVar s e
 
-
-
 (* let program (ds, is) = 
   Turtle.start();
   print (ds, is);
