@@ -3,7 +3,7 @@
 val getSign : float -> float
 
 (** function change degree to rad**)
-val degreeToRad : int -> float
+val degreeToRad : float -> float
 
 (** round the float **)
 val roundFloat : float -> int
@@ -17,6 +17,10 @@ val cordinateY : position -> float -> int
 val isUP : unit -> unit = <fun>
 
 val isDown : unit -> unit = <fun>
+
+val tourne : int -> unit = <fun>
+
+
 
 val start : unit -> unit
 

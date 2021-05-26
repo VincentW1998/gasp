@@ -7,13 +7,11 @@ let x = ref 0.
 let y = ref 0.
 let angle = ref 0.
 
-
-
 (** constant pi **)
 let pi = 4. *. atan(1.)
 
 (** function change degree to rad**)
-let degreeToRad = (fun x -> (float_of_int x) *. (pi /. 180.))
+let degreeToRad = (fun x -> x *. (pi /. 180.))
 
 (** get the sign of x and add this sign to 0.5**)
 let getSign = (fun x -> if x < 0. then (-0.5) else 0.5)
@@ -24,18 +22,18 @@ let roundFloat x =
 
 (* Polar cordinate to cartesian for axe X *)
 let cordinateX length =
-  roundFloat(length  *. cos (degreeToRad !angle))
+  length  *. cos (degreeToRad !angle)
 
 (* Polar cordinate to cartesian for axe Y *)
 let cordinateY length =
-  roundFloat(length *. sin (degreeToRad !angle))
+  length *. sin (degreeToRad !angle)
 
 let tourne a = angle := !angle +. degreeToRad a
 
 let avancer a = 
   x := !x +. cordinateX a;
   y := !x +. cordinateY a;
-  if pen_position then lineto (roundFloat !x) (roundFloat !y)
+  if !pen_position then lineto (roundFloat !x) (roundFloat !y)
   else moveto (roundFloat !x) (roundFloat !y)
 
 open Graphics
