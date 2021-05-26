@@ -9,18 +9,18 @@ val degreeToRad : float -> float
 val roundFloat : float -> int
 
 (* Polar cordinate to cartesian for axe X *)
-val cordinateX : position -> float -> int
+val cordinateX : int -> float 
 
 (* Polar cordinate to cartesian for axe Y *)
-val cordinateY : position -> float -> int
+val cordinateY : int -> float  
 
-val isUP : unit -> unit = <fun>
+val isUp : unit -> unit 
 
-val isDown : unit -> unit = <fun>
+val isDown : unit -> unit
 
-val tourne : int -> unit = <fun>
+val tourne : int -> unit 
 
-
+val avancer : int -> unit
 
 val start : unit -> unit
 

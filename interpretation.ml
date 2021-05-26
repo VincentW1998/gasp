@@ -29,27 +29,30 @@ and printBloc bIs = match bIs with
   | [] -> ()
   | h :: t -> printIs h; printBloc t
 
-
+(* print instruction *)
+let print (ds, is) = printDs ds; printIs is
 
 let rec interpIs is = match is with
-  | BasPinceau -> Turtle.isDOWN ()
-  | HautPinceau -> Turtle.isUP ()
+  | BasPinceau -> Turtle.isDown ()
+  | HautPinceau -> Turtle.isUp ()
   | Avance e -> Turtle.avancer (evaluate e)
   | Tourne e -> Turtle.tourne (evaluate e)
   | BlocInstru bIs -> List.iter interpIs bIs 
   | Equal (s, e) -> Printf.printf "%s = %d\n" s (evaluate e)
 
-(* print instruction *)
-let print (ds, is) = printDs ds; printIs is
 
-(* let program (ds, is) = print (ds, is);
+
+(* let program (ds, is) = 
   Turtle.start();
+  print (ds, is);
   ignore (Graphics.read_key ());
   Graphics.close_graph () *)
 
-let program (ds, is) = interpIs is;
+let program (ds, is) = 
   Turtle.start();
+  interpIs is;
   ignore (Graphics.read_key ());
+  printDs ds;
   Graphics.close_graph ()
 
 

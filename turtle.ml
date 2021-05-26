@@ -1,11 +1,11 @@
 open Graphics
 
 let pen_position = ref true
-let isUP () = pen_position := false
-let isDOWN () = pen_position := true
-let x = ref 0.
-let y = ref 0.
-let angle = ref 0.
+let isUp () = pen_position := false
+let isDown () = pen_position := true
+let x = ref 200.
+let y = ref 200.
+let angle = ref 90.
 
 (** constant pi **)
 let pi = 4. *. atan(1.)
@@ -22,13 +22,13 @@ let roundFloat x =
 
 (* Polar cordinate to cartesian for axe X *)
 let cordinateX length =
-  length  *. cos (degreeToRad !angle)
+  float_of_int(length)  *. cos (degreeToRad !angle)
 
 (* Polar cordinate to cartesian for axe Y *)
 let cordinateY length =
-  length *. sin (degreeToRad !angle)
+  float_of_int(length) *. sin (degreeToRad !angle)
 
-let tourne a = angle := !angle +. degreeToRad a
+let tourne a = angle := !angle +. degreeToRad (float_of_int a)
 
 let avancer a = 
   x := !x +. cordinateX a;
