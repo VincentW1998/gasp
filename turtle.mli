@@ -1,3 +1,5 @@
+val pen_position : bool ref
+
 (** get the sign of x and add this sign to 0.5**)
 val getSign : float -> float
 
@@ -20,6 +22,8 @@ val isDown : unit -> unit
 val tourne : int -> unit 
 
 val avancer : int -> unit
+
+val isOutOfBounds : unit -> unit
 
 val start : unit -> unit
 
