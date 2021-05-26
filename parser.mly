@@ -32,6 +32,8 @@ instruction:
                 { TantFaire (e, i1) }
     
 
+    
+
 expression:
     | s = IDENT     {Ident s}
     | n = INTCONST  {Const n}
@@ -39,5 +41,6 @@ expression:
     | e1 = expression MOINS e2 = expression { App(e1, Moins, e2) }
     | e1 = expression MULT  e2 = expression { App(e1, Mult, e2) }
     | e1 = expression DIV   e2 = expression { App(e1, Div, e2) }
+    | MOINS e = expression { App(Const 0, Moins, e) }
 
 blocInstru: i = instruction SEMICOLON { i }
