@@ -1,10 +1,9 @@
 open Graphics
 
-let pen_position = ref true
-let isUp () = pen_position := false
-let isDown () = pen_position := true
-let x = ref 0.
-let y = ref 0.
+let pen_position = ref true(* pen in Up position *) 
+
+let x = ref 200.
+let y = ref 200.
 
 (** constant pi **)
 let pi = 4. *. atan(1.)
@@ -12,6 +11,7 @@ let pi = 4. *. atan(1.)
 (** function change degree to rad**)
 let degreeToRad = (fun x -> x *. (pi /. 180.))
 
+(* angle base *)
 let angle = ref (degreeToRad 90.)
 
 (** get the sign of x and add this sign to 0.5**)
@@ -31,13 +31,17 @@ let cordinateY length =
 
 let tourne a = angle := !angle +. degreeToRad (float_of_int a)
 
+let isUp () = pen_position := false
+
+let isDown () = pen_position := true
+
 let avancer a = 
   x := !x +. cordinateX a;
   y := !x +. cordinateY a;
+  Printf.printf "angle : %f\n" !angle;
   if !pen_position then lineto (roundFloat !x) (roundFloat !y)
   else moveto (roundFloat !x) (roundFloat !y)
 
-open Graphics
-let start () = open_graph " 800x800"
+let start () = open_graph " 800x800"; moveto (int_of_float !x) (int_of_float !y)
 
 
