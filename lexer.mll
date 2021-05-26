@@ -3,7 +3,7 @@
     open Parser
     exception Error of string
 
-    let keyword_table = Hashtbl.create 12;;
+    let keyword_table = Hashtbl.create 14;;
     List.iter (fun (kwd, tok) -> Hashtbl.add keyword_table kwd tok)
                 [ ("Var", VAR);
                   ("Avance", AVANCE);
@@ -18,7 +18,8 @@
                   ("Tant que", TANT); (* s'arrete si expression == 0 *)
                   ("Faire", FAIRE);
                   ("ChangeCouleur", CHANGECOLOR);
-                  ("ChangeEpaisseur", CHANGEWIDTH) ]
+                  ("ChangeEpaisseur", CHANGEWIDTH);
+                    ]
 
     let next_line lexbuf =
     let pos = lexbuf.lex_curr_p in

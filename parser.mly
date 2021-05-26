@@ -30,6 +30,8 @@ instruction:
     | DEBUT bloc =  blocInstru* FIN    { BlocInstru bloc }
     | IF    e = expression ALORS i1 = instruction SINON i2 = instruction 
                                        { IfAlorsSinon (e, i1, i2) }
+    | IF    e = expression ALORS i1 = instruction 
+                                       { IfAlorsSinon (e, i1, BlocInstru []) }
     | TANT  e = expression FAIRE i1 = instruction 
                                        { TantFaire (e, i1) }
         
