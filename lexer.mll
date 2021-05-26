@@ -11,7 +11,12 @@
                   ("BasPinceau", BASPINCEAU);
                   ("HautPinceau", HAUTPINCEAU);
                   ("Debut", DEBUT);
-                  ("Fin", FIN) ]
+                  ("Fin", FIN);
+                  ("If", IF); 
+                  ("Alors", ALORS); (* executer si expression != 0 *)
+                  ("Sinon", SINON); 
+                  ("Tant", TANT); (* s'arrete si expression == 0 *)
+                  ("Faire", FAIRE) ]
 
     let next_line lexbuf =
     let pos = lexbuf.lex_curr_p in

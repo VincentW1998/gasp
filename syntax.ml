@@ -8,10 +8,12 @@ type expression =
 type instruction =
   | BasPinceau
   | HautPinceau
-  | Avance      of expression
-  | Tourne      of expression
-  | BlocInstru  of instruction list
-  | Equal       of string * expression
+  | Avance        of expression
+  | Tourne        of expression
+  | BlocInstru    of instruction list
+  | Equal         of string * expression
+  | TantFaire     of expression * instruction
+  | IfAlorsSinon  of expression * instruction * instruction 
 
 type declaration = Var of string
 
