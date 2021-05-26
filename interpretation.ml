@@ -54,13 +54,6 @@ let rec interpIs is = match is with
   | Equal (s, e) -> modifyVar s e
 
 
-
-(* let program (ds, is) = 
-  Turtle.start();
-  print (ds, is);
-  ignore (Graphics.read_key ());
-  Graphics.close_graph () *)
-
 let program (ds, is) = 
   Turtle.start();
   interpDs ds;
