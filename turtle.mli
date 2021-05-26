@@ -22,7 +22,7 @@ val isDown : unit -> unit
 
 val tourne : int -> unit 
 
-val avancer : int -> unit
+val draw : int -> unit
 
 val isOutOfBounds : unit -> unit
 

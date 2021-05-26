@@ -12,10 +12,10 @@ let width = ref 800
 let pi = 4. *. atan(1.)
 
 (** function change degree to rad**)
-let degreeToRad = (fun x -> x *. (pi /. 180.))
+let degreeToRad = (fun x -> x *. pi /. 180.)
 
 (* angle base *)
-let angle = ref (degreeToRad 90.)
+let angle = ref 90.
 
 (** get the sign of x and add this sign to 0.5**)
 let getSign = (fun x -> if x < 0. then (-0.5) else 0.5)
@@ -27,13 +27,13 @@ let roundFloat x =
 
 (* Polar cordinate to cartesian for axe X *)
 let cordinateX length =
-  float_of_int(length)  *. cos (!angle)
+  float_of_int(length)  *. cos (degreeToRad !angle)
 
 (* Polar cordinate to cartesian for axe Y *)
 let cordinateY length =
-  float_of_int(length) *. sin (!angle)
+  float_of_int(length) *. sin (degreeToRad !angle)
 
-let tourne a = angle := !angle +. degreeToRad (float_of_int a)
+let tourne a = angle := !angle +. (float_of_int a)
 
 let isUp () = pen_position := false
 
