@@ -1,17 +1,13 @@
 open Graphics
 
-(* Mon ancien code pour mon projet de PF5  *)
+let pen_position = ref true
+let isUP () = pen_position := false
+let isDOWN () = pen_position := true
+let x = ref 0.
+let y = ref 0.
+let angle = ref 0.
 
-type position = {
-  x: float;      (** position x *)
-  y: float;      (** position y *)
-  a: int;        (** angle of the direction *)
-}
 
-(* let pinceau = function 
-  | "Haut" -> pinceau_position := true
-  | "Bas" -> pinceau_position := false
-  | _ -> () *)
 
 (** constant pi **)
 let pi = 4. *. atan(1.)
@@ -27,33 +23,22 @@ let roundFloat x =
   int_of_float (x +. getSign x)
 
 (* Polar cordinate to cartesian for axe X *)
-let cordinateX p length =
-  int_of_float (p.x) + roundFloat(length  *. cos (degreeToRad p.a))
+let cordinateX length =
+  roundFloat(length  *. cos (degreeToRad !angle))
 
 (* Polar cordinate to cartesian for axe Y *)
-let cordinateY p length =
- int_of_float (p.y) + roundFloat(length *. sin (degreeToRad p.a))
+let cordinateY length =
+  roundFloat(length *. sin (degreeToRad !angle))
 
-let cordinate p a length f =
- int_of_float p + roundFloat(length *. f(degreeToRad a))
+let tourne a = angle := !angle +. degreeToRad a
 
-(* Polar cordinate to cartesian for axe X and Y *)
-let cordinateXY p length =
- let x1 = cordinateX p length and
-   y1 = cordinateY p length in
-   (x1, y1)
+let avancer a = 
+  x := !x +. cordinateX a;
+  y := !x +. cordinateY a;
+  if pen_position then lineto (roundFloat !x) (roundFloat !y)
+  else moveto (roundFloat !x) (roundFloat !y)
 
-(* draw line with Graphics.lineto *)
-let draw_line pos taille =
-let taille2 = if taille < 1. then 1. else taille in
- let (x1, y1)  = cordinateXY pos taille2 in lineto x1 y1;
- {x = (float_of_int x1); y = (float_of_int y1); a = pos.a}
-
-(* move the current point *)
-let move_point pos a =
-  let (x1, y1) = cordinateXY pos a in moveto x1 y1;
-  {x = (float_of_int x1); y = (float_of_int y1); a = pos.a}
-
-let () = open_graph " 800x800"
+open Graphics
+let start () = open_graph " 800x800"
 
 
