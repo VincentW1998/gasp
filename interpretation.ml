@@ -1,6 +1,7 @@
 open Syntax
 exception Error of string
 let i = ref 0
+let var_Tbl = Hashtbl.create 100;;
 
 let op = function
   | Plus -> (+)
@@ -11,12 +12,12 @@ let op = function
 let rec evaluate = function
   | Const n -> n
   | App (e1, o, e2) -> op o (evaluate e1) (evaluate e2)
-  | Ident s -> Hashtbl.find !Turtle.var_Tbl s
+  | Ident s -> Hashtbl.find var_Tbl s
 
 let modifyVar s e = 
-  match Hashtbl.find_opt !Turtle.var_Tbl s with
+  match Hashtbl.find_opt var_Tbl s with
   | None -> Printf.printf "None\n"
-  | _ -> Hashtbl.replace !Turtle.var_Tbl s (evaluate e); Printf.printf "%s is %d\n" s (Hashtbl.find !Turtle.var_Tbl s) 
+  | _ -> Hashtbl.replace var_Tbl s (evaluate e); Printf.printf "%s is %d\n" s (Hashtbl.find var_Tbl s) 
 
 
 
@@ -41,7 +42,7 @@ let print (ds, is) = printDs ds; printIs is
 
 let rec interpDs ds = match ds with
   | [] -> ()
-  | (Var e) :: t -> if (Hashtbl.find_opt !Turtle.var_Tbl e) == None then Hashtbl.add !Turtle.var_Tbl e 0; interpDs t
+  | (Var e) :: t -> if (Hashtbl.find_opt var_Tbl e) == None then Hashtbl.add var_Tbl e 0; interpDs t
 
 
 let rec interpIs is = match is with
