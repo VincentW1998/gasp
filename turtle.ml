@@ -1,5 +1,5 @@
 open Graphics
-let pen_position = ref true(* pen in Up position *) 
+let pen_position = ref false(* pen in Up position *) 
 exception Out_of_bounds;; 
 
 let x = ref 0.
@@ -44,7 +44,7 @@ let isOutOfBounds () =
 
 let avancer a = 
   x := !x +. cordinateX a;
-  y := !x +. cordinateY a;
+  y := !y +. cordinateY a;
   if !pen_position then (lineto (roundFloat !x) (roundFloat !y); isOutOfBounds())
   else moveto (roundFloat !x) (roundFloat !y)
 
