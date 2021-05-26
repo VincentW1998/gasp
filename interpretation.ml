@@ -1,5 +1,7 @@
 open Syntax
 exception Error of string
+exception Undeclared_variable
+
 let i = ref 0
 let var_Tbl = Hashtbl.create 100;;
 
@@ -16,8 +18,8 @@ let rec evaluate = function
 
 let modifyVar s e = 
   match Hashtbl.find_opt var_Tbl s with
-  | None -> Printf.printf "None\n"
-  | _ -> Hashtbl.replace var_Tbl s (evaluate e); Printf.printf "%s is %d\n" s (Hashtbl.find var_Tbl s) 
+  | None -> raise Undeclared_variable
+  | _ -> Hashtbl.replace var_Tbl s (evaluate e)
 
 
 
