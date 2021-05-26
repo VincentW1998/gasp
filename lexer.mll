@@ -15,8 +15,10 @@
                   ("If", IF); 
                   ("Alors", ALORS); (* executer si expression != 0 *)
                   ("Sinon", SINON); 
-                  ("Tant", TANT); (* s'arrete si expression == 0 *)
-                  ("Faire", FAIRE) ]
+                  ("Tant que", TANT); (* s'arrete si expression == 0 *)
+                  ("Faire", FAIRE);
+                  ("ChangeCouleur", CHANGECOLOR);
+                  ("ChangeEpaisseur", CHANGEWIDTH) ]
 
     let next_line lexbuf =
     let pos = lexbuf.lex_curr_p in

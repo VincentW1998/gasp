@@ -26,7 +26,7 @@ instruction:
     | TOURNE            e = expression { Tourne e }
     | i = IDENT EQUAL   e = expression { Equal (i, e) }
     | CHANGECOLOR       e = expression { ChangeColor e }
-    | CHANGEWIDTH       e = expression { ChangeWidt e }
+    | CHANGEWIDTH       e = expression { ChangeWidth e }
     | DEBUT bloc =  blocInstru* FIN    { BlocInstru bloc }
     | IF    e = expression ALORS i1 = instruction SINON i2 = instruction 
                                        { IfAlorsSinon (e, i1, i2) }
