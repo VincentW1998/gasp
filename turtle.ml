@@ -1,15 +1,15 @@
 open Graphics
 
-let pen_position = ref true(* pen in Up position *) 
+let pen_position = ref false (* pen in Up position *) 
 
-let x = ref 200.
-let y = ref 200.
+let x = ref 0.
+let y = ref 0.
 
 (** constant pi **)
 let pi = 4. *. atan(1.)
 
 (** function change degree to rad**)
-let degreeToRad = (fun x -> x *. (pi /. 180.))
+let degreeToRad = (fun x -> x *. pi /. 180.)
 
 (* angle base *)
 let angle = ref 90.
@@ -37,7 +37,7 @@ let isDown () = pen_position := true
 
 let  draw a = 
   x := !x +. cordinateX a;
-  y := !x +. cordinateY a;
+  y := !y +. cordinateY a;
   if !pen_position then lineto (roundFloat !x) (roundFloat !y)
   else moveto (roundFloat !x) (roundFloat !y)
 

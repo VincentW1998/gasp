@@ -3,7 +3,7 @@
     open Parser
     exception Error of string
 
-    let keyword_table = Hashtbl.create 7;;
+    let keyword_table = Hashtbl.create 12;;
     List.iter (fun (kwd, tok) -> Hashtbl.add keyword_table kwd tok)
                 [ ("Var", VAR);
                   ("Avance", AVANCE);

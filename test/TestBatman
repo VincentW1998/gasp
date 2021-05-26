@@ -2,12 +2,10 @@ Var angle;
 
 Debut
 
-ChangeEpaisseur 3;
 angle =0;
 
 Tourne 0-45;
 HautPinceau;
-ChangeCouleur noir;
 Avance 100;
 BasPinceau;
 Tourne 45;

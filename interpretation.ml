@@ -21,7 +21,7 @@ let modifyVar s e =
 
 
 
-let rec printDs ds = match ds with
+(* let rec printDs ds = match ds with
   | [] -> ()
   | (Var e) :: t -> Printf.printf "Var %s\n" e; printDs t
 
@@ -32,13 +32,15 @@ let rec printIs is = match is with
   | Tourne e -> Printf.printf "%d Tourne %d\n" !i (evaluate e); i := !i+1;
   | BlocInstru bIs -> Printf.printf "Debut\n"; printBloc bIs; Printf.printf "Fin\n"
   | Equal (s, e) -> modifyVar s e ; Printf.printf "%d %s = %d\n" !i s (evaluate e); i := !i+1;
+  | IfAlorsSinon (e, i1, i2) -> Printf.printf "If  Alors Sinon\n"
+  | TantFaire (e, i1) -> Printf.printf "Tant que Faire\n"
 
 and printBloc bIs = match bIs with
   | [] -> ()
   | h :: t -> printIs h; printBloc t
 
 (* print instruction *)
-let print (ds, is) = printDs ds; printIs is
+let print (ds, is) = printDs ds; printIs is *)
 
 let rec interpDs ds = match ds with
   | [] -> ()
@@ -50,10 +52,11 @@ let rec interpIs is = match is with
   | HautPinceau -> Turtle.isUp ()
   | Avance e -> Turtle.draw (evaluate e)
   | Tourne e -> Turtle.tourne (evaluate e)
+  | IfAlorsSinon (e, i1, i2) -> interpIs (if (evaluate e) <> 0 then i1 else i2)
+  | TantFaire (e, i1) -> while (evaluate e) <> 0 do interpIs i1 done
   | BlocInstru bIs -> List.iter interpIs bIs 
   | Equal (s, e) -> modifyVar s e
-  | IfAlorsSinon (e, i1, i2) -> interpIs (if e <> 0 then i1 else i2)
-  | TantFaire (e, i1) -> while e <> 0 do i1 done
+   
 
 
 let program (ds, is) = 
