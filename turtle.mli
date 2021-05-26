@@ -7,7 +7,8 @@ val getSign : float -> float
 val degreeToRad : float -> float
 
 (** round the float **)
-val roundFloat : float -> int
+val roundFloat : float -> float
+(* val roundFloat : float -> int *)
 
 (* Polar cordinate to cartesian for axe X *)
 val cordinateX : int -> float 

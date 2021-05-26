@@ -9,6 +9,4 @@ Tourne angle/2;
 Avance 100;
 Tourne angle;
 Avance 100;
-Tourne angle*2;
-Avance 100;
 Fin
