@@ -2,7 +2,7 @@ let print_position outx lexbuf =
   Lexing.(
     let pos = lexbuf.lex_curr_p in
     Printf.fprintf outx "Ligne %d Col %d"
-      pos.pos_lnum
+      (pos.pos_lnum - 1)
       (pos.pos_cnum - pos.pos_bol + 1)
   )
 
