@@ -5,6 +5,7 @@ let isUp () = pen_position := false
 let isDown () = pen_position := true
 let x = ref 0.
 let y = ref 0.
+let var_Tbl = ref (Hashtbl.create 100);;
 
 (** constant pi **)
 let pi = 4. *. atan(1.)
