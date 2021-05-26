@@ -3,8 +3,8 @@ open Graphics
 let pen_position = ref true
 let isUp () = pen_position := false
 let isDown () = pen_position := true
-let x = ref 0.
-let y = ref 0.
+let x = ref 200.
+let y = ref 200.
 let var_Tbl = ref (Hashtbl.create 100);;
 
 (** constant pi **)
@@ -39,6 +39,6 @@ let avancer a =
   else moveto (roundFloat !x) (roundFloat !y)
 
 open Graphics
-let start () = open_graph " 800x800"
+let start () = open_graph " 800x800"; moveto (int_of_float !x) (int_of_float !y) ;;
 
 

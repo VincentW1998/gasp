@@ -5,8 +5,4 @@ BasPinceau;
 Avance 100;
 Tourne angle;
 Avance 100;
-Tourne angle;
-Avance 200;
-Tourne angle;
-Avance 200;
 Fin
