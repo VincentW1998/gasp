@@ -22,7 +22,7 @@ let getSign = (fun x -> if x < 0. then (-0.5) else 0.5)
 
 (** round the float **)
 let roundFloat x =
-  snd (modf (x +. copysign 0.5 x))
+  snd (modf (x +. getSign x))
   (* int_of_float (x +. getSign x) *)
 
 (* Polar cordinate to cartesian for axe X *)
@@ -43,14 +43,11 @@ let isOutOfBounds () =
   if !x < 0. || !y < 0. || !x > float_of_int !width || !y > float_of_int !height  then 
     raise Out_of_bounds
 
-let avancer a = 
+let draw a = 
   x := roundFloat(!x +. cordinateX a);
   y := roundFloat(!y +. cordinateY a);
-  (* Printf.printf "x: %f  y: %f\n" !x !y; *)
   if !pen_position then (lineto (int_of_float !x) (int_of_float !y); isOutOfBounds())
   else moveto (int_of_float !x) (int_of_float !y)
-  (* if !pen_position then (lineto (roundFloat !x) (roundFloat !y); isOutOfBounds())
-  else moveto (roundFloat !x) (roundFloat !y) *)
 
 
 let start () = open_graph (" " ^ string_of_int !width ^ "x" ^ string_of_int !height); moveto (int_of_float !x) (int_of_float !y)
