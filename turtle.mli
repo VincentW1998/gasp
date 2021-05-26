@@ -1,3 +1,5 @@
+(* list of declarations *)
+val var_Tbl : (string , int) Hashtbl.t ref
 
 (** get the sign of x and add this sign to 0.5**)
 val getSign : float -> float
