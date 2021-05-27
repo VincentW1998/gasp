@@ -1,3 +1,7 @@
+val color_Tbl : (string, Graphics.color) Hashtbl.t 
+
+type color
+
 val pen_position : bool ref
 
 (** get the sign of x and add this sign to 0.5**)
@@ -25,6 +29,10 @@ val tourne : int -> unit
 val draw : int -> unit
 
 val isOutOfBounds : unit -> unit
+
+val setColor : Graphics.color -> unit
+
+val setWidth : int -> unit
 
 val start : unit -> unit
 

@@ -58,8 +58,8 @@ let rec interpIs is = match is with
   | TantFaire (e, i1) -> while (evaluate e) <> 0 do interpIs i1 done
   | BlocInstru bIs -> List.iter interpIs bIs 
   | Equal (s, e) -> modifyVar s e
-  | ChangeColor e -> Printf.printf "%d" (evaluate e)
-  | ChangeWidth e -> Printf.printf "%d" (evaluate e)
+  | ChangeColor c -> Turtle.setColor c
+  | ChangeWidth e -> Turtle.setWidth (evaluate e)
    
 
 
@@ -71,6 +71,3 @@ let program (ds, is) =
   ignore (Graphics.read_key ());
   (* printDs ds; *)
   Graphics.close_graph ()
-
-
-

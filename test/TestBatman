@@ -7,7 +7,7 @@ angle =0;
 
 Tourne 0-45;
 HautPinceau;
-ChangeCouleur noir;
+ChangeCouleur rouge;
 Avance 100;
 BasPinceau;
 Tourne 45;

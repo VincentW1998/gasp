@@ -5,6 +5,7 @@
 %token AVANCE TOURNE BASPINCEAU HAUTPINCEAU 
 %token IF ALORS SINON TANT FAIRE 
 %token CHANGECOLOR CHANGEWIDTH
+%token NOIR ROUGE VERT JAUNE BLEU
 %token DEBUT FIN EOF
 %start <Syntax.program> s
 
@@ -25,13 +26,11 @@ instruction:
     | AVANCE            e = expression { Avance e }
     | TOURNE            e = expression { Tourne e }
     | i = IDENT EQUAL   e = expression { Equal (i, e) }
-    | CHANGECOLOR       e = expression { ChangeColor e }
+    | CHANGECOLOR       c = color      { ChangeColor c }
     | CHANGEWIDTH       e = expression { ChangeWidth e }
     | DEBUT bloc =  blocInstru* FIN    { BlocInstru bloc }
     | IF    e = expression ALORS i1 = instruction SINON i2 = instruction 
                                        { IfAlorsSinon (e, i1, i2) }
-    | IF    e = expression ALORS i1 = instruction 
-                                       { IfAlorsSinon (e, i1, BlocInstru []) }
     | TANT  e = expression FAIRE i1 = instruction 
                                        { TantFaire (e, i1) }
         
@@ -48,5 +47,11 @@ expression:
     | e1 = expression DIV   e2 = expression { App(e1, Div, e2) }
     | MOINS e = expression                  { App(Const 0, Moins, e) }
 
+color:
+    | NOIR                                  {(Hashtbl.find Turtle.color_Tbl "noir")}
+    | ROUGE                                 {(Hashtbl.find Turtle.color_Tbl "rouge")}
+    | BLEU                                  {(Hashtbl.find Turtle.color_Tbl "bleu")}
+    | VERT                                  {(Hashtbl.find Turtle.color_Tbl "vert")}
+    | JAUNE                                 {(Hashtbl.find Turtle.color_Tbl "jaune")}
 
 blocInstru: i = instruction SEMICOLON { i }

@@ -14,7 +14,7 @@ type instruction =
   | Equal         of string * expression
   | TantFaire     of expression * instruction
   | IfAlorsSinon  of expression * instruction * instruction 
-  | ChangeColor   of expression
+  | ChangeColor   of int
   | ChangeWidth   of expression
 
 type declaration = Var of string
