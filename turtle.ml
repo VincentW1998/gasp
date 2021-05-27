@@ -1,6 +1,14 @@
 open Graphics
-let pen_position = ref false(* pen in Up position *) 
 exception Out_of_bounds;; 
+let pen_position = ref false(* pen in Up position *) 
+type color = Graphics.color
+let color_Tbl = Hashtbl.create 5;;
+List.iter (fun (kwd, tok) -> Hashtbl.add color_Tbl kwd tok)
+[ ("noir", Graphics.black);
+  ("rouge", Graphics.red);
+  ("bleu", Graphics.blue);
+  ("vert", Graphics.green);
+  ("jaune", Graphics.yellow) ];;
 
 let x = ref 0.
 let y = ref 0.
@@ -49,7 +57,8 @@ let draw a =
   if !pen_position then (lineto (int_of_float !x) (int_of_float !y); isOutOfBounds())
   else moveto (int_of_float !x) (int_of_float !y)
 
+let setColor c = Graphics.set_color c
+
+let setWidth e = Graphics.set_line_width e
 
 let start () = open_graph (" " ^ string_of_int !width ^ "x" ^ string_of_int !height); moveto (int_of_float !x) (int_of_float !y)
-
-
