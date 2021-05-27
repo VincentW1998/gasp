@@ -15,7 +15,7 @@
                   ("If", IF); 
                   ("Alors", ALORS); (* executer si expression != 0 *)
                   ("Sinon", SINON); 
-                  ("Tant que", TANT); (* s'arrete si expression == 0 *)
+                  ("Tant", TANT); (* s'arrete si expression == 0 *)
                   ("Faire", FAIRE);
                   ("ChangeCouleur", CHANGECOLOR);
                   ("ChangeEpaisseur", CHANGEWIDTH);
